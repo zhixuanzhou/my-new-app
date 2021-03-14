@@ -16,6 +16,7 @@ function ToDoListPopUp() {
               items: [...items, values],
             });
           }
+          form.resetFields();
         }}
       >
         <Checkbox>Meet Jun Quan</Checkbox>
