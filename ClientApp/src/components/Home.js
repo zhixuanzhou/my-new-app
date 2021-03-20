@@ -2,21 +2,33 @@ import React, { useState } from "react";
 import ToDoListPopUp from "./ToDoListPopUp";
 import "antd/dist/antd.css";
 import { Modal, Button } from "antd";
+import ItemApi from "../api/item";
 
 function Home() {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  function showModal() {
+  const [items, setItems] = useState(null);
+
+  const showModal = () => {
     setIsModalVisible(true);
-  }
+  };
 
-  function handleOk() {
-    setIsModalVisible(false);
-  }
+  const callbackForm = (items) => {
+    setItems(items);
+  };
 
-  function handleCancel() {
+  const handleSaveItems = () => {
+    ItemApi.createItem(items);
+  };
+
+  const handleOk = () => {
     setIsModalVisible(false);
-  }
+    handleSaveItems();
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <div>
@@ -29,7 +41,7 @@ function Home() {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <ToDoListPopUp />
+        <ToDoListPopUp form={(items) => callbackForm(items)} />
       </Modal>
     </div>
   );

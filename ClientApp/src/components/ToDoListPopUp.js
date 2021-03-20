@@ -2,7 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import { Form, Input, Button, Checkbox } from "antd";
 
-function ToDoListPopUp() {
+function ToDoListPopUp(props) {
   const [form] = Form.useForm();
 
   return (
@@ -15,11 +15,11 @@ function ToDoListPopUp() {
             ToDoListItems.setFieldsValue({
               items: [...items, values],
             });
+            props.form(items);
           }
           form.resetFields();
         }}
       >
-        <Checkbox>Meet Jun Quan</Checkbox>
         <Form name="ToDoListItems">
           <Form.Item
             shouldUpdate={(prevValues, curValues) =>
@@ -31,8 +31,8 @@ function ToDoListPopUp() {
               return (
                 <>
                   {items.map((item, index) => (
-                      <li>
-                    <Checkbox key={index}>{item.name}</Checkbox>
+                    <li>
+                      <Checkbox key={index}>{item.name}</Checkbox>
                     </li>
                   ))}
                 </>
