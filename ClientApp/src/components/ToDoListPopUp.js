@@ -1,9 +1,20 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, Checkbox, Popconfirm, message } from "antd";
+import { DeleteTwoTone } from "@ant-design/icons";
 
 function ToDoListPopUp(props) {
   const [form] = Form.useForm();
+
+  function confirm(e) {
+    console.log(e);
+    message.success("Click on Yes");
+  }
+
+  function cancel(e) {
+    console.log(e);
+    message.error("Click on No");
+  }
 
   return (
     <>
@@ -33,6 +44,15 @@ function ToDoListPopUp(props) {
                   {items.map((item, index) => (
                     <li>
                       <Checkbox key={index}>{item.name}</Checkbox>
+                      <Popconfirm
+                        title="Are you sure to delete this task?"
+                        onConfirm={confirm}
+                        onCancel={cancel}
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <DeleteTwoTone />
+                      </Popconfirm>
                     </li>
                   ))}
                 </>
