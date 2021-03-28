@@ -7,20 +7,26 @@ import { FormProvider } from "antd/lib/form/context";
 function ToDoListPopUpV2(props) {
   const [items, setItems] = useState(["first", "second"]);
 
-  const confirm = (index) => {
-    setItems(items.filter((i) => i !== items[index]));
-    message.success("Delete this task");
-  };
-
-  function cancel() {
-    message.error("Not delete this task");
-  }
-
   const addNewItem = (e) => {
     e.preventDefault();
     let item = e.target.value;
     setItems([...items, item]);
     // e.target.reset();
+  };
+
+  const confirm = (index) => {
+    setItems(items.filter((i) => i !== items[index]));
+    message.success("Delete this task");
+  };
+
+  const cancel = () => {
+    message.error("Not delete this task");
+  };
+
+  const handleEditItem = (index, item) => {
+    console.log(item);
+    items[index] = item;
+    console.log(items);
   };
 
   return (
@@ -32,7 +38,15 @@ function ToDoListPopUpV2(props) {
               <>
                 {items.map((item, index) => (
                   <li key={index} className="to-do-list-item">
-                    <Checkbox>{item}</Checkbox>
+                    <Checkbox className="checkbox-item"></Checkbox>
+                    <span
+                      className="to-do-list-item-content"
+                      contenteditable="true"
+                      onBlur={(e) => handleEditItem(index, e.target.innerText)}
+                    >
+                      {item}
+                    </span>
+
                     <Popconfirm
                       title="Are you sure to delete this task?"
                       onConfirm={() => confirm(index)}
