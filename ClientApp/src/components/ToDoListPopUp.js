@@ -8,12 +8,12 @@ function ToDoListPopUp(props) {
 
   function confirm(e) {
     console.log(e);
-    message.success("Click on Yes");
+    message.success("Delete this task");
   }
 
   function cancel(e) {
     console.log(e);
-    message.error("Click on No");
+    message.error("Not delete this task");
   }
 
   return (
@@ -42,7 +42,7 @@ function ToDoListPopUp(props) {
               return (
                 <>
                   {items.map((item, index) => (
-                    <li>
+                    <li className="to-do-list-item">
                       <Checkbox key={index}>{item.name}</Checkbox>
                       <Popconfirm
                         title="Are you sure to delete this task?"
@@ -51,7 +51,7 @@ function ToDoListPopUp(props) {
                         okText="Yes"
                         cancelText="No"
                       >
-                        <DeleteTwoTone />
+                        <DeleteTwoTone className="to-do-list-item-delete-button" />
                       </Popconfirm>
                     </li>
                   ))}

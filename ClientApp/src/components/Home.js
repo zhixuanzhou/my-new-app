@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import ToDoListPopUp from "./ToDoListPopUp";
+// import ToDoListPopUp from "./ToDoListPopUp";
+import ToDoListPopUpV2 from "./ToDoListPopUpV2";
+
 import "antd/dist/antd.css";
 import { Modal, Button } from "antd";
 import ItemApi from "../api/item";
@@ -41,7 +43,7 @@ function Home() {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <ToDoListPopUp form={(items) => callbackForm(items)} />
+        <ToDoListPopUpV2 form={(items) => callbackForm(items)} />
       </Modal>
     </div>
   );
