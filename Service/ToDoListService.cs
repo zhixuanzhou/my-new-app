@@ -1,3 +1,4 @@
+using System.Linq;
 using my_new_app.Requests;
 
 
@@ -9,8 +10,9 @@ namespace my_new_app.Services
         {
         }
         
-        private void CreateToDoListItems(CreateToDoListItemsRequest request)
+        public void Create(CreateToDoListItemsRequest request)
         {
+            var items = request.Items.ToList();
         }
     }
 }

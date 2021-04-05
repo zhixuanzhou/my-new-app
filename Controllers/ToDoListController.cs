@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using my_new_app.Requests;
 using my_new_app.Services;
@@ -9,7 +8,6 @@ namespace my_new_app.Controllers
     public class ToDoListController : ControllerBase
     {
         readonly ToDoListService toDoListService;
-
         public ToDoListController(ToDoListService toDoListService)
         {
             this.toDoListService = toDoListService;
@@ -17,11 +15,9 @@ namespace my_new_app.Controllers
 
         [HttpPost]
         [Route("http://localhost:3000/items")]
-
-        public async Task<IHttpActionResult> CreateToDoListItems(CreateToDoListItemsRequest request)
+        public void CreateToDoListItems(CreateToDoListItemsRequest request)
         {
-            await toDoListService.CreateToDoListItems(request);
-            return Ok();
+            toDoListService.Create(request);
         }
     }
 }
