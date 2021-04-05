@@ -1,9 +1,9 @@
 import "@testing-library/jest-dom";
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import ToDoListPopUp from "./ToDoListPopUp";
-import userEvent from "@testing-library/user-event";
+import { userEvent, button } from "@testing-library/user-event";
 import MutationObserver from "@sheerun/mutationobserver-shim";
+import ToDoListPopUpV2 from "./ToDoListPopUpV2";
 
 describe("ToDoListPopUp", () => {
   beforeAll(() => {
@@ -24,17 +24,17 @@ describe("ToDoListPopUp", () => {
     });
   });
 
-  it("should be able to type todos and add when click add button", async () => {
-    render(<ToDoListPopUp />);
+  it("should be able to type todos and add when click the enter", async () => {
+    render(<ToDoListPopUpV2 />);
     userEvent.type(screen.getByRole("textbox"), "the first item");
-    userEvent.click(screen.getByRole("button"));
+    userEvent.type(button, "{enter}");
     await waitFor(() => {
       expect(screen.getByText("the first item")).toBeInTheDocument();
     });
   });
 
   it("should be able to validate required input field", async () => {
-    render(<ToDoListPopUp />);
+    render(<ToDoListPopUpV2 />);
     userEvent.click(screen.getByRole("button"));
     await waitFor(() => {
       expect(screen.getByText("This field is required")).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe("ToDoListPopUp", () => {
   });
 
   it("should be able to check the checkbox", () => {
-    render(<ToDoListPopUp />);
+    render(<ToDoListPopUpV2 />);
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox.checked).toEqual(false);
 

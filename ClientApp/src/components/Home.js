@@ -35,7 +35,7 @@ function Home() {
   return (
     <div>
       <Button type="primary" onClick={showModal}>
-        Card
+        Get Started
       </Button>
       <Modal
         title="To Do List"
