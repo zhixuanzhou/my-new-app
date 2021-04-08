@@ -48,16 +48,19 @@ export class NavMenu extends Component {
             >
               <ul className="navbar-nav flex-grow">
                 <NavItem>
+                  {/* eslint-disable-next-line */}
                   <NavLink tag={Link} className="text-dark" to="/">
                     🏠
                   </NavLink>
                 </NavItem>
                 <NavItem>
+                  {/* eslint-disable-next-line */}
                   <NavLink tag={Link} className="text-dark" to="/counter">
                     🧸
                   </NavLink>
                 </NavItem>
                 <NavItem>
+                  {/* eslint-disable-next-line */}
                   <NavLink tag={Link} className="text-dark" to="/fetch-data">
                     ⛅
                   </NavLink>

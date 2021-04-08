@@ -6,12 +6,13 @@ import { FormProvider } from "antd/lib/form/context";
 
 function ToDoListPopUpV2(props) {
   const [items, setItems] = useState(["first", "second"]);
+  const [form] = Form.useForm();
 
   const addNewItem = (e) => {
     e.preventDefault();
     let item = e.target.value;
     setItems([...items, item]);
-    // e.target.reset();
+    form.resetFields();
   };
 
   const confirm = (index) => {
@@ -63,7 +64,7 @@ function ToDoListPopUpV2(props) {
           </Form.Item>
         </Form>
 
-        <Form name="AddItems">
+        <Form name="AddItems" form={form}>
           <Form.Item
             name="name"
             // rules={[{ required: true, message: "This field is required" }]}
